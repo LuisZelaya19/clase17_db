@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Loan;
+use App\Models\Member;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,5 +23,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $this->call([
+            GenreSeeder::class,
+        ]);
+
+        Book::factory(100)->create();
+        Author::factory(100)->create();
+        Member::factory(100)->create();
+        Loan::factory(100)->create();
     }
 }

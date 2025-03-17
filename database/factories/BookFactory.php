@@ -17,7 +17,9 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->word(),
+            'published_year' => rand(2000, 2020),
+            'genre_id' => rand(1, 3)
         ];
     }
 }
