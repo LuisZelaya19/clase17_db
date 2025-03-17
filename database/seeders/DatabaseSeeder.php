@@ -28,9 +28,16 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
         ]);
 
-        Book::factory(100)->create();
-        Author::factory(100)->create();
+        // Book::factory(100)->create();
+        $authors = Author::factory(100)->create();
         Member::factory(100)->create();
+
+        Book::factory(100)->create()->each(function ($book) use ($authors) {
+            $book->authors()->attach(
+                $authors->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
+
         Loan::factory(100)->create();
     }
 }
